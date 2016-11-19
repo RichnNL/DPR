@@ -1,0 +1,10 @@
+C:\Users\Dyer\Dropbox\Fontys\Blok 8\DPR\Week1\StrategyPattern\StrategyPattern\bin\Debug\StrategyPattern.exe.config
+C:\Users\Dyer\Documents\GitHub\DPR\Week1\StrategyPattern\StrategyPattern\bin\Debug\StrategyPattern.exe.config
+C:\Users\Dyer\Documents\GitHub\DPR\Week1\StrategyPattern\StrategyPattern\obj\Debug\StrategyPattern.csprojResolveAssemblyReference.cache
+C:\Users\Dyer\Documents\GitHub\DPR\Week1\StrategyPattern\StrategyPattern\obj\Debug\StrategyPattern.Form1.resources
+C:\Users\Dyer\Documents\GitHub\DPR\Week1\StrategyPattern\StrategyPattern\obj\Debug\StrategyPattern.Properties.Resources.resources
+C:\Users\Dyer\Documents\GitHub\DPR\Week1\StrategyPattern\StrategyPattern\obj\Debug\StrategyPattern.csproj.GenerateResource.Cache
+C:\Users\Dyer\Documents\GitHub\DPR\Week1\StrategyPattern\StrategyPattern\bin\Debug\StrategyPattern.exe
+C:\Users\Dyer\Documents\GitHub\DPR\Week1\StrategyPattern\StrategyPattern\bin\Debug\StrategyPattern.pdb
+C:\Users\Dyer\Documents\GitHub\DPR\Week1\StrategyPattern\StrategyPattern\obj\Debug\StrategyPattern.exe
+C:\Users\Dyer\Documents\GitHub\DPR\Week1\StrategyPattern\StrategyPattern\obj\Debug\StrategyPattern.pdb
