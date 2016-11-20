@@ -20,7 +20,15 @@ namespace StrategyPattern
             //Sorts by the arrival time
             data.Sort(PC);
 
-            //Store thes first arrival 
+            //If First Processess Arrival time is not 0
+            if (Convert.ToInt32(data[0][2]) != 0)
+            {
+                int firstArrival = Convert.ToInt32(data[0][2]);
+                string[] empty = { "Empty Process", firstArrival.ToString(), 0.ToString(), "white" };
+                finalList.Add(empty);
+            }
+
+            //Store the first arrival 
             finalList.Add(data[0]);
             data.Remove(data[0]);
 
@@ -75,12 +83,6 @@ namespace StrategyPattern
 
 
             }
-
-
-
-
-
-
             return finalList;
         }
     }

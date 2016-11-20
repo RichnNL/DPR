@@ -49,6 +49,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label_time = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.rb_color_red = new System.Windows.Forms.RadioButton();
             this.rb_color_yellow = new System.Windows.Forms.RadioButton();
             this.rb_color_blue = new System.Windows.Forms.RadioButton();
@@ -59,7 +60,6 @@
             this.label_percentage = new System.Windows.Forms.Label();
             this.textbox_arrival = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.labelArrival = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -235,9 +235,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(491, 460);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(145, 20);
+            this.label5.Size = new System.Drawing.Size(163, 20);
             this.label5.TabIndex = 13;
-            this.label5.Text = "Time to Completion";
+            this.label5.Text = "Average Waiting Time";
             // 
             // label_time
             // 
@@ -261,6 +261,15 @@
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(211, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(107, 20);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "Process Color";
             // 
             // rb_color_red
             // 
@@ -357,15 +366,6 @@
             this.label7.TabIndex = 21;
             this.label7.Text = "Arrival Time";
             this.label7.Click += new System.EventHandler(this.label7_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(211, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(107, 20);
-            this.label8.TabIndex = 22;
-            this.label8.Text = "Process Color";
             // 
             // labelArrival
             // 

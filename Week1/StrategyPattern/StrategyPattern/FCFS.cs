@@ -16,6 +16,14 @@ namespace StrategyPattern
             ProcessCompar PC = new ProcessCompar();
             //Sorts by the arrival time
             data.Sort(PC);
+            //If First Processess Arrival time is not 0
+            if(Convert.ToInt32(data[0][2]) != 0)
+            {
+                int firstArrival = Convert.ToInt32(data[0][2]);
+                string[] empty = { "Empty Process", firstArrival.ToString(), 0.ToString(), "white" };
+                data.Insert(0, empty);
+            }
+            //Calculates the waiting time
             foreach (var v in data)
             {
                 if(previousBurst == 0)

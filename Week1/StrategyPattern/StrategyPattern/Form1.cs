@@ -64,6 +64,7 @@ namespace StrategyPattern
         {
             if (radioButton1.Checked)
             {
+                process = null;
                 process = new FirstCome(fcfs);
             }
         }
@@ -72,6 +73,7 @@ namespace StrategyPattern
         {
             if (radioButton2.Checked)
             {
+                process = null;
                 process = new Shortest(non);
             }
         }
@@ -208,6 +210,7 @@ namespace StrategyPattern
         {
             if (radioButton3.Checked)
             {
+                process = null;
                 process = new Shortest(pre);
             }
         }
@@ -303,6 +306,10 @@ namespace StrategyPattern
         {
             return Color.Blue;
         }
+        else if(color == "white")
+            {
+                return Color.Transparent;
+            }
         else
         {
             return Color.Red;
