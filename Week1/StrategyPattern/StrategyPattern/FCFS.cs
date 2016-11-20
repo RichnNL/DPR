@@ -22,24 +22,22 @@ namespace StrategyPattern
                 int firstArrival = Convert.ToInt32(data[0][2]);
                 string[] empty = { "Empty Process", firstArrival.ToString(), 0.ToString(), "white" };
                 data.Insert(0, empty);
+                previousBurst = firstArrival;
+                data[1][3] = previousBurst.ToString();
+            }
+            else
+            {
+                data[0][3] = previousBurst.ToString();
             }
             //Calculates the waiting time
-            foreach (var v in data)
+            
+            for(int i = 1; i < data.Count; i++)
             {
-                if(previousBurst == 0)
-                {
-                    previousBurst = previousBurst + Convert.ToInt32(v[1]);
-                    v[3] = 0.ToString();
-                }
-                else
-                {
-                    int waitingtime = previousBurst - Convert.ToInt32(v[2]);
-                    previousBurst = previousBurst + Convert.ToInt32(v[1]);
-                    v[3] = waitingtime.ToString();
-                }
-               
-                
+                previousBurst = previousBurst + Convert.ToInt32(data[i-1][1]);
+                int wait = previousBurst - Convert.ToInt32(data[i][2]);
+                data[i][3] = wait.ToString();
             }
+            
             return data;
         }
     }

@@ -110,6 +110,7 @@ namespace StrategyPattern
                     thread.Start();
                 }
             }
+            calculateAverageWaitingTime();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -329,6 +330,7 @@ namespace StrategyPattern
             pos[2] = 0;
             Graphics g = panel1.CreateGraphics();
             g.Clear(Color.White);
+            label_time.Text = "0";
 
         }
 
@@ -353,6 +355,39 @@ namespace StrategyPattern
         private void labelArrival_Click(object sender, EventArgs e)
         {
 
+        }
+        private void calculateAverageWaitingTime()
+        {
+            if (radioButton3.Checked)
+            {
+                List<int> AWT = new List<int>();
+                List<string> processed = new List<string>();
+                foreach (var v in processedData)
+                {
+                    bool twice = false;
+                    foreach(var p in processed)
+                    {
+                        if(v[0] == p)
+                        {
+                            twice = true;
+                        }
+                    }
+                    if(!twice)
+                    AWT.Add(Convert.ToInt32(v[3]));
+                }
+                int s = AWT.Sum();
+                label_time.Text = s.ToString();
+            }
+            else
+            {
+                List<int> AWT = new List<int>();
+                foreach(var v in processedData)
+                {
+                    AWT.Add(Convert.ToInt32(v[3]));
+                }
+                int s = AWT.Sum();
+                label_time.Text = s.ToString();
+            }
         }
     }
 }
