@@ -20,7 +20,7 @@ namespace StrategyPattern
             if(Convert.ToInt32(data[0][2]) != 0)
             {
                 int firstArrival = Convert.ToInt32(data[0][2]);
-                string[] empty = { "Empty Process", firstArrival.ToString(), 0.ToString(), "white" };
+                string[] empty = { "Empty Process", firstArrival.ToString(), 0.ToString(),0.ToString(), "white" };
                 data.Insert(0, empty);
                 previousBurst = firstArrival;
                 data[1][3] = previousBurst.ToString();

@@ -29,6 +29,7 @@ namespace StrategyPattern
         readonly int y;
         int x = 0;
         readonly int width;
+        Thread thread;
         public Form1()
         {
             InitializeComponent();
@@ -92,14 +93,39 @@ namespace StrategyPattern
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (radioButton1.Checked)
+            {
+                process = null;
+                process = new FirstCome(fcfs);
+            }
+            else if (radioButton2.Checked)
+            {
+                process = null;
+                process = new Shortest(non);
+            }
+            else if(radioButton3.Checked)
+            {
+                process = null;
+                process = new Shortest(pre);
+            }
+            
             processData();
             if (processedData.Count != 0)
             {
-                Thread thread;
+                
                 if (paused == -1)
                 {
+                    if(thread == null)
+                    {
+                        thread = new Thread(processBarStart);
+                    }
+                    else
+                    {
+                        thread.Abort();
+                        thread = new Thread(processBarStart);
+                    }
                     restartBar();
-                    thread = new Thread(processBarStart);
+                    
                     paused = 1;
                     thread.Start();
                 }
@@ -219,7 +245,8 @@ namespace StrategyPattern
         {
             if (data.Count > 1 && process != null)
             {
-                processedData = process.processRequest(data);
+                List<string[]> temp = data;
+                processedData = process.processRequest(temp);
                 listView1.Items.Clear();
                 foreach (string[] str in processedData)
                 {
