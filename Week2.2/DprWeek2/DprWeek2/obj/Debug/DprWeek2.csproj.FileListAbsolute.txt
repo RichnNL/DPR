@@ -1,0 +1,10 @@
+C:\Users\ADMIN\Google Drive\DprWeek2\DprWeek2\bin\Debug\DprWeek2.exe.config
+C:\Users\ADMIN\Google Drive\DprWeek2\DprWeek2\bin\Debug\DprWeek2.exe
+C:\Users\ADMIN\Google Drive\DprWeek2\DprWeek2\bin\Debug\DprWeek2.pdb
+C:\Users\ADMIN\Google Drive\DprWeek2\DprWeek2\obj\Debug\DprWeek2.Amsterdam.resources
+C:\Users\ADMIN\Google Drive\DprWeek2\DprWeek2\obj\Debug\DprWeek2.Eindhoven.resources
+C:\Users\ADMIN\Google Drive\DprWeek2\DprWeek2\obj\Debug\DprWeek2.Form1.resources
+C:\Users\ADMIN\Google Drive\DprWeek2\DprWeek2\obj\Debug\DprWeek2.Properties.Resources.resources
+C:\Users\ADMIN\Google Drive\DprWeek2\DprWeek2\obj\Debug\DprWeek2.csproj.GenerateResource.Cache
+C:\Users\ADMIN\Google Drive\DprWeek2\DprWeek2\obj\Debug\DprWeek2.exe
+C:\Users\ADMIN\Google Drive\DprWeek2\DprWeek2\obj\Debug\DprWeek2.pdb
