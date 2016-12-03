@@ -1,0 +1,9 @@
+C:\Users\Dyer\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\bin\Debug\BMW_Car_Dealership.exe.config
+C:\Users\Dyer\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\obj\Debug\BMW_Car_Dealership.csprojResolveAssemblyReference.cache
+C:\Users\Dyer\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\obj\Debug\BMW_Car_Dealership.Form1.resources
+C:\Users\Dyer\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\obj\Debug\BMW_Car_Dealership.Properties.Resources.resources
+C:\Users\Dyer\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\obj\Debug\BMW_Car_Dealership.csproj.GenerateResource.Cache
+C:\Users\Dyer\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\bin\Debug\BMW_Car_Dealership.exe
+C:\Users\Dyer\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\bin\Debug\BMW_Car_Dealership.pdb
+C:\Users\Dyer\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\obj\Debug\BMW_Car_Dealership.exe
+C:\Users\Dyer\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\obj\Debug\BMW_Car_Dealership.pdb
