@@ -38,6 +38,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label_price = new System.Windows.Forms.Label();
             this.label_description = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,6 +86,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(307, 120);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(330, 205);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
@@ -101,7 +103,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Georgia", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(307, 422);
+            this.label2.Location = new System.Drawing.Point(307, 443);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 24);
             this.label2.TabIndex = 6;
@@ -113,7 +115,7 @@
             // 
             this.label_price.AutoSize = true;
             this.label_price.Font = new System.Drawing.Font("Georgia", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_price.Location = new System.Drawing.Point(384, 422);
+            this.label_price.Location = new System.Drawing.Point(384, 443);
             this.label_price.Name = "label_price";
             this.label_price.Size = new System.Drawing.Size(51, 24);
             this.label_price.TabIndex = 7;
@@ -126,17 +128,29 @@
             this.label_description.AutoSize = true;
             this.label_description.Font = new System.Drawing.Font("Georgia", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_description.Location = new System.Drawing.Point(307, 347);
+            this.label_description.MaximumSize = new System.Drawing.Size(400, 0);
             this.label_description.Name = "label_description";
             this.label_description.Size = new System.Drawing.Size(114, 24);
             this.label_description.TabIndex = 8;
             this.label_description.Text = "Description";
             this.label_description.UseWaitCursor = true;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Minion Pro", 8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(529, 518);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(144, 22);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "само кеш/Cash Only";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(674, 549);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label_description);
             this.Controls.Add(this.label_price);
             this.Controls.Add(this.label2);
@@ -147,6 +161,7 @@
             this.Controls.Add(this.Welcome_Label);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -164,6 +179,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label_price;
         private System.Windows.Forms.Label label_description;
+        private System.Windows.Forms.Label label3;
     }
 }
 

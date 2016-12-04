@@ -9,7 +9,7 @@ namespace BMW_Car_Dealership
     class TankosDealership
     {
         public List<BMW> stock;
-       
+        public List<Accessories> accessories;
         public TankosDealership()
         {
             stock = new List<BMW>();
@@ -18,8 +18,8 @@ namespace BMW_Car_Dealership
             stock.Add(new I8());
             stock.Add(new Z4());
             stock.Add(new M6Coupe());
-
             
+
         }
     }
 }
