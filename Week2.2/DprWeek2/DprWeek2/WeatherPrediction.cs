@@ -37,7 +37,7 @@ namespace DprWeek2
         {
             foreach (IObserver ob in observers)
             {
-                ob.update(CalculateRain(), temperature);
+                ob.update();
             }
         }
         // if the random number is bigger than 50 then it rains ... 

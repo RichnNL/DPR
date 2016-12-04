@@ -7,3 +7,12 @@ C:\Users\Dyer\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\b
 C:\Users\Dyer\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\bin\Debug\BMW_Car_Dealership.pdb
 C:\Users\Dyer\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\obj\Debug\BMW_Car_Dealership.exe
 C:\Users\Dyer\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\obj\Debug\BMW_Car_Dealership.pdb
+C:\Users\ADMIN\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\bin\Debug\BMW_Car_Dealership.exe.config
+C:\Users\ADMIN\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\obj\Debug\BMW_Car_Dealership.exe
+C:\Users\ADMIN\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\obj\Debug\BMW_Car_Dealership.pdb
+C:\Users\ADMIN\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\bin\Debug\BMW_Car_Dealership.exe
+C:\Users\ADMIN\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\bin\Debug\BMW_Car_Dealership.pdb
+C:\Users\ADMIN\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\obj\Debug\BMW_Car_Dealership.csprojResolveAssemblyReference.cache
+C:\Users\ADMIN\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\obj\Debug\BMW_Car_Dealership.Form1.resources
+C:\Users\ADMIN\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\obj\Debug\BMW_Car_Dealership.Properties.Resources.resources
+C:\Users\ADMIN\Documents\GitHub\DPR\Week3\BMW_Car_Dealership\BMW_Car_Dealership\obj\Debug\BMW_Car_Dealership.csproj.GenerateResource.Cache

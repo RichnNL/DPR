@@ -8,6 +8,6 @@ namespace DprWeek2
 {
     interface IObserver
     {
-        void update(bool isRaining, int temprature);
+        void update(); //bool isRaining, int temprature);
     }
 }

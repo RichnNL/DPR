@@ -22,22 +22,27 @@ namespace DprWeek2
             chance = isItraining;
         }
 
-        public void update(bool isRaining, int temprature)
-        {
-            textBox1.Text = Convert.ToString(temprature) + " C";
-            if (isRaining)
-            {
-                label2.Text = "It is raining";
-            }
-            else
-            {
-                label2.Text = "It is not raining";
-            }
-        }
+        //public void update(bool isRaining, int temprature)
+        //{
+        //    textBox1.Text = Convert.ToString(temprature) + " C";
+        //    if (isRaining)
+        //    {
+        //        label2.Text = "It is raining";
+        //    }
+        //    else
+        //    {
+        //        label2.Text = "It is not raining";
+        //    }
+        //}
 
         private void Amsterdam_Load(object sender, EventArgs e)
         {
 
+        }
+
+        public void update()
+        {
+            textBox1.Text = Convert.ToString(temperature);
         }
     }
 }
