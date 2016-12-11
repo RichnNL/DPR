@@ -1,0 +1,9 @@
+C:\Users\Dyer\Documents\GitHub\DPR\Week4\MotorcycleDealer\MotorcycleDealer\bin\Debug\MotorcycleDealer.exe.config
+C:\Users\Dyer\Documents\GitHub\DPR\Week4\MotorcycleDealer\MotorcycleDealer\obj\Debug\MotorcycleDealer.csprojResolveAssemblyReference.cache
+C:\Users\Dyer\Documents\GitHub\DPR\Week4\MotorcycleDealer\MotorcycleDealer\obj\Debug\MotorcycleDealer.Form1.resources
+C:\Users\Dyer\Documents\GitHub\DPR\Week4\MotorcycleDealer\MotorcycleDealer\obj\Debug\MotorcycleDealer.Properties.Resources.resources
+C:\Users\Dyer\Documents\GitHub\DPR\Week4\MotorcycleDealer\MotorcycleDealer\obj\Debug\MotorcycleDealer.csproj.GenerateResource.Cache
+C:\Users\Dyer\Documents\GitHub\DPR\Week4\MotorcycleDealer\MotorcycleDealer\bin\Debug\MotorcycleDealer.exe
+C:\Users\Dyer\Documents\GitHub\DPR\Week4\MotorcycleDealer\MotorcycleDealer\bin\Debug\MotorcycleDealer.pdb
+C:\Users\Dyer\Documents\GitHub\DPR\Week4\MotorcycleDealer\MotorcycleDealer\obj\Debug\MotorcycleDealer.exe
+C:\Users\Dyer\Documents\GitHub\DPR\Week4\MotorcycleDealer\MotorcycleDealer\obj\Debug\MotorcycleDealer.pdb
