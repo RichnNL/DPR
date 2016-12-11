@@ -32,10 +32,10 @@ namespace MotorcycleDealer
         {
             this.maximumDistance = speed;
         }
-        public override string ToString()
-        {
-            return getModel() + " has " + engine.toString() + " and can go a maximum distance of " + maximumDistance + " and costs " + getPrice();
-        }
+        //public override string ToString()
+        //{
+        //    return getModel() + " has " + engine.toString() + " and can go a maximum distance of " + maximumDistance + " and costs " + getPrice();
+        //}
      }
     }
 
