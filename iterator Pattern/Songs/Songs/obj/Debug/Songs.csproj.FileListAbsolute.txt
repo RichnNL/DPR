@@ -1,0 +1,9 @@
+C:\Users\ADMIN\Documents\Visual Studio 2015\Projects\Songs\Songs\bin\Debug\Songs.exe.config
+C:\Users\ADMIN\Documents\Visual Studio 2015\Projects\Songs\Songs\obj\Debug\Songs.csprojResolveAssemblyReference.cache
+C:\Users\ADMIN\Documents\Visual Studio 2015\Projects\Songs\Songs\obj\Debug\Songs.Form1.resources
+C:\Users\ADMIN\Documents\Visual Studio 2015\Projects\Songs\Songs\obj\Debug\Songs.Properties.Resources.resources
+C:\Users\ADMIN\Documents\Visual Studio 2015\Projects\Songs\Songs\obj\Debug\Songs.csproj.GenerateResource.Cache
+C:\Users\ADMIN\Documents\Visual Studio 2015\Projects\Songs\Songs\bin\Debug\Songs.exe
+C:\Users\ADMIN\Documents\Visual Studio 2015\Projects\Songs\Songs\bin\Debug\Songs.pdb
+C:\Users\ADMIN\Documents\Visual Studio 2015\Projects\Songs\Songs\obj\Debug\Songs.exe
+C:\Users\ADMIN\Documents\Visual Studio 2015\Projects\Songs\Songs\obj\Debug\Songs.pdb
