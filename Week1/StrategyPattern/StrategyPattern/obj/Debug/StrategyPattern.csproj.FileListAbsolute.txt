@@ -8,3 +8,6 @@ C:\Users\Dyer\Documents\GitHub\DPR\Week1\StrategyPattern\StrategyPattern\bin\Deb
 C:\Users\Dyer\Documents\GitHub\DPR\Week1\StrategyPattern\StrategyPattern\bin\Debug\StrategyPattern.pdb
 C:\Users\Dyer\Documents\GitHub\DPR\Week1\StrategyPattern\StrategyPattern\obj\Debug\StrategyPattern.exe
 C:\Users\Dyer\Documents\GitHub\DPR\Week1\StrategyPattern\StrategyPattern\obj\Debug\StrategyPattern.pdb
+C:\Users\Tsanko\Documents\GitHub\DPR\Week1\StrategyPattern\StrategyPattern\bin\Debug\StrategyPattern.exe.config
+C:\Users\Tsanko\Documents\GitHub\DPR\Week1\StrategyPattern\StrategyPattern\obj\Debug\StrategyPattern.exe
+C:\Users\Tsanko\Documents\GitHub\DPR\Week1\StrategyPattern\StrategyPattern\obj\Debug\StrategyPattern.pdb

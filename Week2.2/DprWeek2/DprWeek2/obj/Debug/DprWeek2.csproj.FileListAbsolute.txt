@@ -19,3 +19,6 @@ C:\Users\ADMIN\Documents\GitHub\DPR\Week2.2\DprWeek2\DprWeek2\obj\Debug\DprWeek2
 C:\Users\ADMIN\Documents\GitHub\DPR\Week2.2\DprWeek2\DprWeek2\obj\Debug\DprWeek2.csproj.GenerateResource.Cache
 C:\Users\ADMIN\Documents\GitHub\DPR\Week2.2\DprWeek2\DprWeek2\bin\Debug\DprWeek2.exe
 C:\Users\ADMIN\Documents\GitHub\DPR\Week2.2\DprWeek2\DprWeek2\bin\Debug\DprWeek2.pdb
+C:\Users\Tsanko\Documents\GitHub\DPR\Week2.2\DprWeek2\DprWeek2\bin\Debug\DprWeek2.exe.config
+C:\Users\Tsanko\Documents\GitHub\DPR\Week2.2\DprWeek2\DprWeek2\obj\Debug\DprWeek2.exe
+C:\Users\Tsanko\Documents\GitHub\DPR\Week2.2\DprWeek2\DprWeek2\obj\Debug\DprWeek2.pdb
