@@ -14,9 +14,9 @@ namespace Songs
             songList.Add(new Songs(name, description,year));
             return songList.Count;
         }
-        public int Add(Songs itemContents)
+        public int Add(Songs song)
         {
-            songList.Add(itemContents);
+            songList.Add(song);
             return songList.Count;
         }
         public Songs GetItem(int index)
