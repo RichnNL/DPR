@@ -14,7 +14,7 @@ namespace Songs
         {
             _itemsList = itemsList;
         }
-    //    ICustomIterator Members;
+  
         public bool HasNext()
         {
             if (position < _itemsList.Count)

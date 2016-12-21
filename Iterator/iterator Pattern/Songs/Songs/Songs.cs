@@ -17,9 +17,9 @@ namespace Songs
             Band = band;
             Year = year;
         }
-        public override string ToString()
-        {
-            return Name + " - " + Band + Year.ToString();
-        }
+        //public override string ToString()
+        //{
+        //    return Name + " - " + Band + Year.ToString();
+        //}
     }
 }
