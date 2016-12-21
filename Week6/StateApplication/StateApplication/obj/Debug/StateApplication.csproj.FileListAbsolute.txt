@@ -1,0 +1,11 @@
+C:\Users\Dyer\Documents\GitHub\DPR\Week6\StateApplication\StateApplication\bin\Debug\StateApplication.exe.config
+C:\Users\Dyer\Documents\GitHub\DPR\Week6\StateApplication\StateApplication\obj\Debug\StateApplication.csprojResolveAssemblyReference.cache
+C:\Users\Dyer\Documents\GitHub\DPR\Week6\StateApplication\StateApplication\obj\Debug\StateApplication.AssignPlayer.resources
+C:\Users\Dyer\Documents\GitHub\DPR\Week6\StateApplication\StateApplication\obj\Debug\StateApplication.Form1.resources
+C:\Users\Dyer\Documents\GitHub\DPR\Week6\StateApplication\StateApplication\obj\Debug\StateApplication.GameBoard.resources
+C:\Users\Dyer\Documents\GitHub\DPR\Week6\StateApplication\StateApplication\obj\Debug\StateApplication.Properties.Resources.resources
+C:\Users\Dyer\Documents\GitHub\DPR\Week6\StateApplication\StateApplication\obj\Debug\StateApplication.csproj.GenerateResource.Cache
+C:\Users\Dyer\Documents\GitHub\DPR\Week6\StateApplication\StateApplication\bin\Debug\StateApplication.exe
+C:\Users\Dyer\Documents\GitHub\DPR\Week6\StateApplication\StateApplication\bin\Debug\StateApplication.pdb
+C:\Users\Dyer\Documents\GitHub\DPR\Week6\StateApplication\StateApplication\obj\Debug\StateApplication.exe
+C:\Users\Dyer\Documents\GitHub\DPR\Week6\StateApplication\StateApplication\obj\Debug\StateApplication.pdb

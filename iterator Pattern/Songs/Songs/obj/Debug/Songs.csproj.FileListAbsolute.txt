@@ -16,3 +16,6 @@ C:\Users\Tsanko\Documents\GitHub\DPR\iterator Pattern\Songs\Songs\obj\Debug\Song
 C:\Users\Tsanko\Documents\GitHub\DPR\iterator Pattern\Songs\Songs\obj\Debug\Songs.Form1.resources
 C:\Users\Tsanko\Documents\GitHub\DPR\iterator Pattern\Songs\Songs\obj\Debug\Songs.Properties.Resources.resources
 C:\Users\Tsanko\Documents\GitHub\DPR\iterator Pattern\Songs\Songs\obj\Debug\Songs.csproj.GenerateResource.Cache
+C:\Users\Dyer\Documents\GitHub\DPR\iterator Pattern\Songs\Songs\bin\Debug\Songs.exe.config
+C:\Users\Dyer\Documents\GitHub\DPR\iterator Pattern\Songs\Songs\obj\Debug\Songs.exe
+C:\Users\Dyer\Documents\GitHub\DPR\iterator Pattern\Songs\Songs\obj\Debug\Songs.pdb
