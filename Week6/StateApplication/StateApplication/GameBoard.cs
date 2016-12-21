@@ -62,7 +62,7 @@ namespace StateApplication
                 textBoxPot.Text = game.pot.ToString();
                 game.getPlayer(1).turn = 1;
                 game.setNextPlayer();
-                PlayerTurn(game.CurrentPlayersTurn);
+                
             }
             UpdateChips();
         
@@ -267,6 +267,78 @@ namespace StateApplication
 
             
         }
+        public void ShowWinnerLoser()
+        {
+            int winner = game.getWinner().getPlayerNumber();
+            int loser = game.getLoser().getPlayerNumber();
+            switch (winner)
+            {
+                case 1:
+                    Player1_name.ForeColor = System.Drawing.Color.CadetBlue;
+                    Player1_name.Text = game.getWinner().getPlayerName() + "WINNING";
+                    break;
+
+                case 2:
+                    Player2_name.ForeColor = System.Drawing.Color.CadetBlue;
+                    Player2_name.Text = game.getWinner().getPlayerName() + "WINNING";
+                    break;
+                case 3:
+                    Player3_Name.ForeColor = System.Drawing.Color.CadetBlue;
+                    Player3_Name.Text = game.getWinner().getPlayerName() + "WINNING";
+                    break;
+                case 4:
+                    Player4Name_Label.ForeColor = System.Drawing.Color.CadetBlue;
+                    Player4Name_Label.Text = game.getWinner().getPlayerName() + "WINNING";
+                    break;
+            }
+            switch (loser)
+            {
+                case 1:
+                    Player1_name.ForeColor = System.Drawing.Color.Red;
+                    Player1_name.Text = game.getLoser().getPlayerName() + "Losing";
+                    break;
+
+                case 2:
+                    Player2_name.ForeColor = System.Drawing.Color.Red;
+                    Player2_name.Text = game.getLoser().getPlayerName() + "Losing";
+                    break;
+                case 3:
+                    Player3_Name.ForeColor = System.Drawing.Color.Red;
+                    Player3_Name.Text = game.getLoser().getPlayerName() + "Losing";
+                    break;
+                case 4:
+                    Player4Name_Label.ForeColor = System.Drawing.Color.CadetBlue;
+                    Player4Name_Label.Text = game.getLoser().getPlayerName() + "Losing";
+                    break;
+            }
+
+            for (int i = 1;i < game.getNumberOfPlayers(); i++)
+            {
+                if(i != game.getLoser().getPlayerNumber() || i != game.getWinner().getPlayerNumber())
+                {
+                    switch (i)
+                    {
+                        case 1:
+                            Player1_name.ForeColor = System.Drawing.Color.Black;
+                            Player1_name.Text = game.getPlayer(1).getPlayerName();
+                            break;
+                        case 2:
+                            Player2_name.ForeColor = System.Drawing.Color.Black;
+                            Player2_name.Text = game.getPlayer(2).getPlayerName();
+                            break;
+                        case 3:
+                            Player3_Name.ForeColor = System.Drawing.Color.Black;
+                            Player3_Name.Text = game.getPlayer(3).getPlayerName();
+                            break;
+                        case 4:
+                            Player4Name_Label.ForeColor = System.Drawing.Color.Black;
+                            Player4Name_Label.Text = game.getPlayer(4).getPlayerName();
+                            break;
+                    }
+                }
+            }
+        }
+       
 
         private void Player1betAmount_ValueChanged(object sender, EventArgs e)
         {
@@ -309,7 +381,7 @@ namespace StateApplication
                 textBoxPot.Text = game.pot.ToString();
                 game.getPlayer(2).turn = 1;
                 game.setNextPlayer();
-                PlayerTurn(game.CurrentPlayersTurn);
+               
             }
             UpdateChips();
         }
@@ -335,7 +407,7 @@ namespace StateApplication
                 textBoxPot.Text = game.pot.ToString();
                 game.getPlayer(3).turn = 1;
                 game.setNextPlayer();
-                PlayerTurn(game.CurrentPlayersTurn);
+                
             }
             UpdateChips();
         }
@@ -361,7 +433,7 @@ namespace StateApplication
                 textBoxPot.Text = game.pot.ToString();
                 game.getPlayer(4).turn = 1;
                 game.setNextPlayer();
-                PlayerTurn(game.CurrentPlayersTurn);
+                
             }
             UpdateChips();
         }
@@ -373,7 +445,7 @@ namespace StateApplication
             game.getPlayer(1).fold(game.getLoser());
             UpdateChips();
             game.setNextPlayer();
-            PlayerTurn(game.CurrentPlayersTurn);
+            
 
         }
         public void showCard(int Player,int CardToShow)
@@ -461,7 +533,7 @@ namespace StateApplication
             game.getPlayer(2).fold(game.getLoser());
             UpdateChips();
             game.setNextPlayer();
-            PlayerTurn(game.CurrentPlayersTurn);
+           
         }
 
         private void Player3FoldButton_Click(object sender, EventArgs e)
@@ -472,7 +544,7 @@ namespace StateApplication
             game.getPlayer(3).fold(game.getLoser());
             UpdateChips();
             game.setNextPlayer();
-            PlayerTurn(game.CurrentPlayersTurn);
+            
         }
 
         private void Player4FoldButton_Click(object sender, EventArgs e)
@@ -483,7 +555,7 @@ namespace StateApplication
             game.getPlayer(4).fold(game.getLoser());
             UpdateChips();
             game.setNextPlayer();
-            PlayerTurn(game.CurrentPlayersTurn);
+            
         }
 
         private void Player1RaiseButton_Click(object sender, EventArgs e)
@@ -495,8 +567,9 @@ namespace StateApplication
                 textboxCall.Text = bet.ToString();
                 game.pot += game.getPlayer(1).raise(bet, game.getLoser());
                 game.getPlayer(1).turn = 1;
+                UpdateChips();
                 game.setNextPlayer();
-                PlayerTurn(game.CurrentPlayersTurn);
+                
             }
         }
 
@@ -509,8 +582,9 @@ namespace StateApplication
                 textboxCall.Text = bet.ToString();
                 game.pot += game.getPlayer(2).raise(bet, game.getLoser());
                 game.getPlayer(2).turn = 1;
+                UpdateChips();
                 game.setNextPlayer();
-                PlayerTurn(game.CurrentPlayersTurn);
+              
             }
         }
 
@@ -523,8 +597,9 @@ namespace StateApplication
                 textboxCall.Text = bet.ToString();
                 game.pot += game.getPlayer(3).raise(bet, game.getLoser());
                 game.getPlayer(3).turn = 1;
+                UpdateChips();
                 game.setNextPlayer();
-                PlayerTurn(game.CurrentPlayersTurn);
+                
             }
         }
 
@@ -537,8 +612,9 @@ namespace StateApplication
                 textboxCall.Text = bet.ToString();
                 game.pot += game.getPlayer(4).raise(bet, game.getLoser());
                 game.getPlayer(4).turn = 1;
+                UpdateChips();
                 game.setNextPlayer();
-                PlayerTurn(game.CurrentPlayersTurn);
+               
             }
         }
 
@@ -546,28 +622,28 @@ namespace StateApplication
         {
             game.getPlayer(1).check(game.getLoser());
             game.setNextPlayer();
-            PlayerTurn(game.CurrentPlayersTurn);
+           
         }
 
         private void Player2CheckButton_Click(object sender, EventArgs e)
         {
             game.getPlayer(2).check(game.getLoser());
             game.setNextPlayer();
-            PlayerTurn(game.CurrentPlayersTurn);
+            
         }
 
         private void Player3CheckButton_Click(object sender, EventArgs e)
         {
             game.getPlayer(3).check(game.getLoser());
             game.setNextPlayer();
-            PlayerTurn(game.CurrentPlayersTurn);
+            
         }
 
         private void Player4CheckButton_Click(object sender, EventArgs e)
         {
             game.getPlayer(4).check(game.getLoser());
             game.setNextPlayer();
-            PlayerTurn(game.CurrentPlayersTurn);
+           
         }
     }
 }

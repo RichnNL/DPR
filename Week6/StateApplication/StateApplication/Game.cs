@@ -23,7 +23,25 @@ namespace StateApplication
         private bool aRoundWinner;
         GameBoard board;
         public int Round { get { return round; }
-                           set { }
+                           set {
+                                round = value;
+                                if (round == 0)
+                                {
+                                RoundStart();
+                                }
+                                else if(round == 1)
+                                 {
+                                 RoundOne();
+                                 }
+                                else if(round == 2)
+                                {
+                                 RoundTwo();
+                                }
+                                else if(round == 3)
+                                {
+                                    restartRound();
+                                }
+            }
         }
         public int CurrentPlayersTurn { get { return playersTurn; }
             set { if(value < 1 || value > numberofplayers)
@@ -109,55 +127,100 @@ namespace StateApplication
                 
             }
         }
-        public void RoundOne()
+        public void RoundStart()
         {
             aRoundWinner = false;
             playersInGame = players;
-            while (!everyoneTurnComplete())
+            Round = 1;
+        }
+        public void RoundOne()
+        {
+            if (!aRoundWinner)
             {
-                board.PlayerTurn(getCurrentPlayer().getPlayerNumber());
+                if (!everyoneTurnComplete())
+                {
+                    board.PlayerTurn(getCurrentPlayer().getPlayerNumber());
+                }
+                else
+                {
+                    foreach (Player p in playersInGame)
+                    {
+                        drawCard(p.getPlayerNumber(), 1);
+                        board.showCard(p.getPlayerNumber(), 1);
+                        p.turn = 0;
+                    }
+                    Round = 2;
+
+                }
             }
-            foreach(Player p in playersInGame)
+            else
             {
-                drawCard(p.getPlayerNumber(), 1);
-                board.showCard(p.getPlayerNumber(), 1);
-                p.turn = 0;
+                Round = 3;
             }
-           
 
         }
         public void RoundTwo()
         {
-            while (!everyoneTurnComplete())
+            if (!aRoundWinner)
             {
-                board.PlayerTurn(getCurrentPlayer().getPlayerNumber());
-            }
-            foreach (Player p in playersInGame)
-            {
-                drawCard(p.getPlayerNumber(), 1);
-                board.showCard(p.getPlayerNumber(), 1);
-            }
-            Player winner = playersInGame[0];
-            foreach(Player p in playersInGame)
-            {
-                int value1 = p.card1.getValue() + p.card2.getValue();
-                if(value1 > (winner.card1.getValue() + winner.card2.getValue()))
+                if (!everyoneTurnComplete())
                 {
-                    winner = p;
+                    board.PlayerTurn(getCurrentPlayer().getPlayerNumber());
                 }
-                else if(value1 == (winner.card1.getValue() + winner.card2.getValue()))
-                {
-                    if(p.getState() == State.Winner && p != winner)
+                else {
+                    foreach (Player p in playersInGame)
                     {
-                        winner = p;
+                        drawCard(p.getPlayerNumber(), 1);
+                        board.showCard(p.getPlayerNumber(), 1);
                     }
+                    Player winner = playersInGame[0];
+                    foreach (Player p in playersInGame)
+                    {
+                        int value1 = p.card1.getValue() + p.card2.getValue();
+                        if (value1 > (winner.card1.getValue() + winner.card2.getValue()))
+                        {
+                            winner = p;
+                        }
+                        else if (value1 == (winner.card1.getValue() + winner.card2.getValue()))
+                        {
+                            if (p.getState() == State.Winner && p != winner)
+                            {
+                                winner = p;
+                            }
+                            else if (p.getState() == State.Loser && winner.getState() == State.Neutral)
+                            {
+                                winner = p;
+                            }
+                            else
+                            {
+                                PlayerWonPot(winner, p);
+                                break;
+                            }
+
+                        }
+                    }
+                    PlayerWonPot(winner);
                 }
             }
-            PlayerWonPot(winner);
+            else
+            {
+                Round = 3;
+            }
         }
         public void restartRound()
         {
-
+            checkIfPlayerWon();
+            SetWinnerLoser();
+            board.ShowWinnerLoser();
+            foreach(Player p in players)
+            {
+                p.allIn = 0;
+                p.turn = 0;
+                p.InRound = true;
+            }
+            pot = 0;
+            callAmount = 0;
+            //need to set no call amount in board
         }
         private void SetWinnerLoser()
         {
@@ -226,24 +289,39 @@ namespace StateApplication
             {
                 PlayerWonPot(playersInGame[0]);
             }
-            else
+            else if(Round == 1)
             {
-                CurrentPlayersTurn++;
-                bool inGame = false;
-                while (!inGame)
-                {
-                    foreach (Player p in playersInGame)
-                    {
-                        if (p.getPlayerNumber() == CurrentPlayersTurn && p.InRound)
-                        {
-                            inGame = true;
-                        }
-                    }
-                    CurrentPlayersTurn++;
-                }
+                next();
+                RoundOne();
+            }
+            else if(Round == 2)
+            {
+                next();
+                RoundTwo();
+            }
+            else if(Round == 3)
+            {
+                restartRound();
             }
             
         
+        }
+        private void next()
+        {
+
+            CurrentPlayersTurn++;
+            bool inGame = false;
+            while (!inGame)
+            {
+                foreach (Player p in playersInGame)
+                {
+                    if (p.getPlayerNumber() == CurrentPlayersTurn && p.InRound)
+                    {
+                        inGame = true;
+                    }
+                }
+                CurrentPlayersTurn++;
+            }
         }
         public void PlayerWonPot(Player player)
         {
@@ -251,14 +329,18 @@ namespace StateApplication
             if(player.allIn == 0)
             {
                 player.chips += pot;
+                DialogResult result = MessageBox.Show("Player: " + player.getPlayerName() + "Won :" + pot);
+                if (result == DialogResult.OK)
+                {
+                    Round = 3;
+                }
             }
             else
             {
                 player.chips += player.allIn;
                 pot -= player.allIn;
                 Player winner = playersInGame[0];
-                if(winner == player && playersInGame.Count > 1)
-              //  { iam here
+                if(winner == player && playersInGame.Count > 1) { 
                     winner = playersInGame[1];
                 }
                 foreach (Player p in playersInGame)
@@ -280,6 +362,23 @@ namespace StateApplication
                     }
                     
                 }
+                winner.chips += pot;
+                DialogResult result = MessageBox.Show("Player: " + player.getPlayerName() + "Won :" + player.allIn + " Player: " + winner.getPlayerName() + "Won " + pot);
+                if (result == DialogResult.OK)
+                {
+                    Round = 3;
+                }
+            }
+        }
+        public void PlayerWonPot(Player player1, Player player2)
+        {
+            aRoundWinner = true;
+                player1.chips += pot / 2;
+                player2.chips += pot / 2;
+            DialogResult result = MessageBox.Show("Players: " + player1.getPlayerName() + "   " + player2.getPlayerName() + "Won :" + pot / 2);
+            if(result == DialogResult.OK)
+            {
+                Round = 3;
             }
         }
         private void drawCard(int player, int card)
@@ -327,6 +426,10 @@ namespace StateApplication
                 }
             }
             return false;
+        }
+        public Player getWinner()
+        {
+            return WinningPlayer;
         }
     }
 }
