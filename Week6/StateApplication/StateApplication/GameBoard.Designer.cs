@@ -415,7 +415,7 @@
             // Player3_Name
             // 
             this.Player3_Name.AutoSize = true;
-            this.Player3_Name.Location = new System.Drawing.Point(146, 328);
+            this.Player3_Name.Location = new System.Drawing.Point(146, 335);
             this.Player3_Name.Name = "Player3_Name";
             this.Player3_Name.Size = new System.Drawing.Size(61, 20);
             this.Player3_Name.TabIndex = 47;
@@ -442,7 +442,7 @@
             // player1_money
             // 
             this.player1_money.AutoSize = true;
-            this.player1_money.Location = new System.Drawing.Point(146, 139);
+            this.player1_money.Location = new System.Drawing.Point(134, 90);
             this.player1_money.Name = "player1_money";
             this.player1_money.Size = new System.Drawing.Size(0, 20);
             this.player1_money.TabIndex = 55;
@@ -450,7 +450,7 @@
             // player2_money
             // 
             this.player2_money.AutoSize = true;
-            this.player2_money.Location = new System.Drawing.Point(146, 302);
+            this.player2_money.Location = new System.Drawing.Point(134, 242);
             this.player2_money.Name = "player2_money";
             this.player2_money.Size = new System.Drawing.Size(0, 20);
             this.player2_money.TabIndex = 56;
@@ -458,7 +458,7 @@
             // player3_money
             // 
             this.player3_money.AutoSize = true;
-            this.player3_money.Location = new System.Drawing.Point(145, 442);
+            this.player3_money.Location = new System.Drawing.Point(134, 378);
             this.player3_money.Name = "player3_money";
             this.player3_money.Size = new System.Drawing.Size(0, 20);
             this.player3_money.TabIndex = 57;
@@ -466,18 +466,13 @@
             // Player4_money
             // 
             this.Player4_money.AutoSize = true;
-            this.Player4_money.Location = new System.Drawing.Point(145, 589);
+            this.Player4_money.Location = new System.Drawing.Point(134, 547);
             this.Player4_money.Name = "Player4_money";
             this.Player4_money.Size = new System.Drawing.Size(0, 20);
             this.Player4_money.TabIndex = 58;
             // 
             // Player1betAmount
             // 
-            this.Player1betAmount.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.Player1betAmount.Location = new System.Drawing.Point(21, 139);
             this.Player1betAmount.Maximum = new decimal(new int[] {
             100000,
@@ -491,11 +486,6 @@
             // 
             // Player2BetAmount
             // 
-            this.Player2BetAmount.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.Player2BetAmount.Location = new System.Drawing.Point(21, 293);
             this.Player2BetAmount.Maximum = new decimal(new int[] {
             100000,
@@ -509,12 +499,7 @@
             // 
             // Player3BetAmount
             // 
-            this.Player3BetAmount.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.Player3BetAmount.Location = new System.Drawing.Point(21, 442);
+            this.Player3BetAmount.Location = new System.Drawing.Point(21, 443);
             this.Player3BetAmount.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -527,11 +512,6 @@
             // 
             // Player4BetAmount
             // 
-            this.Player4BetAmount.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.Player4BetAmount.Location = new System.Drawing.Point(21, 589);
             this.Player4BetAmount.Maximum = new decimal(new int[] {
             100000,

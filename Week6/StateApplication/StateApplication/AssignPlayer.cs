@@ -12,8 +12,8 @@ namespace StateApplication
 {
     public partial class AssignPlayer : Form
     {
-        string playerName;
-        int money;
+        public string playerName;
+        public int money;
         GameBoard gameboard;
         public AssignPlayer(GameBoard game)
         {
@@ -38,14 +38,14 @@ namespace StateApplication
 
         private void player1bet_ValueChanged(object sender, EventArgs e)
         {
-            money = Convert.ToInt32( player1bet.Value);
+            money = Convert.ToInt32(player1bet.Value);
         }
 
         private void Set_Button_Click(object sender, EventArgs e)
         {
-            if(money > 50 && playerName.Length > 2)
+            if (money > 50 && playerName.Length > 2)
             {
-                gameboard.addPlayer(playerName,money);
+                gameboard.addPlayer(playerName, money);
                 gameboard.numberOfPlayers--;
                 this.Close();
             }
@@ -55,5 +55,12 @@ namespace StateApplication
         {
 
         }
+        public void setNameMoney(string name, int chips)
+        {
+            textBox1.Text = name;
+            player1bet.Value = chips;
+        }
+
+
     }
 }

@@ -21,12 +21,14 @@ namespace StateApplication
         public Card card1;
         public Card card2;
         public int allIn;
+        public int amountCalled;
 
         public Player(string PlayerName, int starting_chips, int playerNumber)
         {
             Winning = new WinningPlayer(this);
             Losing = new LosingPlayer(this);
             Neutral = new NeturalPlayer(this);
+            this.amountCalled = 0;
             this.playerName = PlayerName;
             this.chips = starting_chips;
             this.playerState = Neutral;
@@ -64,7 +66,9 @@ namespace StateApplication
         }
         public int call(int callAmount)
         {
+            callAmount -= amountCalled;
             chips -= callAmount;
+            amountCalled += callAmount;
             return callAmount;
         }
         public int raise(int amount, Player loser)

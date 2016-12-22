@@ -46,6 +46,8 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
@@ -150,9 +152,10 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(20, 182);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(364, 20);
+            this.label8.Size = new System.Drawing.Size(316, 20);
             this.label8.TabIndex = 11;
-            this.label8.Text = "After the first round you can call,raise,check or fold";
+            this.label8.Text = "Each Round you can call,raise,check or fold";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label9
             // 
@@ -196,9 +199,9 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(19, 302);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(322, 20);
+            this.label13.Size = new System.Drawing.Size(405, 20);
             this.label13.TabIndex = 16;
-            this.label13.Text = "Taxes Winner pays 5% tax everyone else 1%";
+            this.label13.Text = "Taxes Winner pays 5% tax everyone else 1% to the loser";
             // 
             // label14
             // 
@@ -233,7 +236,7 @@
             0,
             0});
             this.numericUpDown2.Minimum = new decimal(new int[] {
-            100,
+            1000,
             0,
             0,
             0});
@@ -241,17 +244,37 @@
             this.numericUpDown2.Size = new System.Drawing.Size(120, 26);
             this.numericUpDown2.TabIndex = 19;
             this.numericUpDown2.Value = new decimal(new int[] {
-            100,
+            1000,
             0,
             0,
             0});
             this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(20, 342);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(281, 20);
+            this.label16.TabIndex = 20;
+            this.label16.Text = "Winner gets Bonus Chips Each Round";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(20, 362);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(368, 20);
+            this.label17.TabIndex = 21;
+            this.label17.Text = "Which ever player first gets to the chips to win wins.";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(614, 488);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.numericUpDown2);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
@@ -300,6 +323,8 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
     }
 }
 

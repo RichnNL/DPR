@@ -43,34 +43,93 @@ namespace StateApplication
 
         private void button1_Click(object sender, EventArgs e)
         {
+           
             int bet = Convert.ToInt32(Player1betAmount.Value);
-            if (game.callAmount == 0)
-            {
+           
+                if (game.callAmount == 0 && bet != 0)
+                {
                     game.callAmount = bet;
-                textboxCall.Text = bet.ToString();
-            }
-            if(game.callAmount > game.getPlayer(1).getPlayerChips())
+
+                }
+            if (game.callAmount != 0)
             {
-                game.pot += game.getPlayer(1).call(game.getPlayer(1).getPlayerChips());
-                game.getPlayer(1).allIn = game.pot;
-                game.getPlayer(1).InRound = false;
-                game.getPlayer(1).turn = 1;
+                if (game.callAmount > game.getPlayer(1).getPlayerChips())
+                {
+                    game.pot += game.getPlayer(1).call(game.getPlayer(1).getPlayerChips());
+                    game.getPlayer(1).allIn = game.pot;
+                    game.getPlayer(1).InRound = false;
+                    game.getPlayer(1).turn = 1;
+                    game.ContinueRound();
+                }
+                else
+                {
+                    game.pot += game.getPlayer(1).call(game.callAmount);
+                    game.getPlayer(1).turn = 1;
+                    game.ContinueRound();
+
+                }
+                UpdateChips();
             }
-            else
-            {
-                game.pot += game.getPlayer(1).call(game.callAmount);
-                textBoxPot.Text = game.pot.ToString();
-                game.getPlayer(1).turn = 1;
-                game.setNextPlayer();
-                
-            }
-            UpdateChips();
-        
         }
 
         private void GameBoard_Load(object sender, EventArgs e)
         {
 
+        }
+        public void playerOut(int player)
+        {
+            switch (player)
+            {
+                case 1:
+                    Player1betAmount.Hide();
+                    Player1CallButton.Hide();
+                    Player1FoldButton.Hide();
+                    Player1_name.Hide();
+                    player1_money.Hide();
+                    Player1Picture.Hide();
+                    Player1Pb1.Hide();
+                    Player1Pb2.Hide();
+                    Player1Money_label.Hide();
+                    break;
+                case 2:
+                    Player2BetAmount.Hide();
+                    Player2CheckButton.Hide();
+                    Player2FoldButton.Hide();
+                    Player2Pb1.Hide();
+                    Player2Pb2.Hide();
+                    player2_money.Hide();
+                    player2_money_label.Hide();
+                    Player2RaiseButton.Hide();
+                    Player2Picture.Hide();
+                    break;
+                case 3:
+                    Player3BetAmount.Hide();
+                    Player3CallButton.Hide();
+                    Player3CheckButton.Hide();
+                    Player3FoldButton.Hide();
+                    Player3Pb1.Hide();
+                    Player3Pb2.Hide();
+                    Player3Picture.Hide();
+                    Player3RaiseButton.Hide();
+                    player3_money.Hide();
+                    Player3_Name.Hide();
+                    Player3Money_Label.Hide();
+                    break;
+                case 4:
+                    Player4BetAmount.Hide();
+                    Player4CallButton.Hide();
+                    Player4CheckButton.Hide();
+                    Player4FoldButton.Hide();
+                    Player4Pb1.Hide();
+                    Player4Pb2.Hide();
+                    Player4Picture.Hide();
+                    Player4RaiseButton.Hide();
+                    Player4_money.Hide();
+                    Player4Name_Label.Hide();
+                    Player4MoneyLabel.Hide();
+                    break;
+
+            }
         }
         private void initiateGame()
         {
@@ -84,46 +143,13 @@ namespace StateApplication
             Player2_name.Text = player.getPlayerName();
             if (game.getNumberOfPlayers() == 2)
             {
-                Player3BetAmount.Hide();
-                Player3CallButton.Hide();
-                Player3CheckButton.Hide();
-                Player3FoldButton.Hide();
-                Player3Pb1.Hide();
-                Player3Pb2.Hide();
-                Player3Picture.Hide();
-                Player3RaiseButton.Hide();
-                Player3RaiseButton.Hide();
-                player3_money.Hide();
-                Player3_Name.Hide();
-                Player3Money_Label.Hide();
-                Player3BetAmount.Hide();
-                Player4BetAmount.Hide();
-                Player4CallButton.Hide();
-                Player4CheckButton.Hide();
-                Player4FoldButton.Hide();
-                Player4Pb1.Hide();
-                Player4Pb2.Hide();
-                Player4Picture.Hide();
-                Player4RaiseButton.Hide();
-                Player4_money.Hide();
-                Player4BetAmount.Hide();
-                Player4Name_Label.Hide();
-                Player4MoneyLabel.Hide();
+                playerOut(3);
+                playerOut(4);
+               
             }
             else if(game.getNumberOfPlayers() == 3)
             {
-                Player4BetAmount.Hide();
-                Player4CallButton.Hide();
-                Player4CheckButton.Hide();
-                Player4FoldButton.Hide();
-                Player4Pb1.Hide();
-                Player4Pb2.Hide();
-                Player4Picture.Hide();
-                Player4RaiseButton.Hide();
-                Player4_money.Hide();
-                Player4BetAmount.Hide();
-                Player4Name_Label.Hide();
-                Player4MoneyLabel.Hide();
+                playerOut(4);
                 player = game.getPlayer(3);
                 player3_money.Text = player.getPlayerChips().ToString();
                 Player3_Name.Text = player.getPlayerName();
@@ -134,18 +160,29 @@ namespace StateApplication
                 Player4_money.Text = player.getPlayerChips().ToString();
                 Player4Name_Label.Text = player.getPlayerName();
             }
+            game.Round = 0;
         }
         private void enablePlayer1()
         {
             Player1betAmount.Show();
             Player1CallButton.Enabled = true;
-            Player1CheckButton.Enabled = true;
-            Player1FoldButton.Enabled = true;
-            Player1RaiseButton.Enabled = true;
-            if (String.IsNullOrEmpty(textBoxPot.Text))
+            if(game.getNumberPlayerTurns() > 1)
+            {
+                Player1CheckButton.Enabled = true;
+            }
+            if (game.callAmount > 0)
+            {
+                Player1FoldButton.Enabled = true;
+                Player1RaiseButton.Enabled = true;
+            }
+            if (String.IsNullOrEmpty(textBoxPot.Text) || game.callAmount == 0)
             {
                 Player1RaiseButton.Enabled = false;
                 Player1CallButton.Text = "Place Bet";
+            }
+            else if(game.getPlayer(1).getPlayerChips() <= game.callAmount)
+            {
+                Player1CallButton.Text = "All In";
             }
             else
             {
@@ -165,13 +202,24 @@ namespace StateApplication
         {
             Player2BetAmount.Show();
             Player2CallButton.Enabled = true;
-            Player2CheckButton.Enabled = true;
-            Player2FoldButton.Enabled = true;
-            Player2RaiseButton.Enabled = true;
-            if (String.IsNullOrEmpty(textBoxPot.Text))
+            if (game.getNumberPlayerTurns() > 1)
+            {
+                Player2CheckButton.Enabled = true;
+            }
+            if (game.callAmount > 0)
+            {
+                Player2FoldButton.Enabled = true;
+                Player2RaiseButton.Enabled = true;
+            }
+            if (String.IsNullOrEmpty(textBoxPot.Text) || game.callAmount == 0)
             {
                 Player2RaiseButton.Enabled = false;
                 Player2CallButton.Text = "Place Bet";
+
+            }
+            else if (game.getPlayer(2).getPlayerChips() <= game.callAmount)
+            {
+                Player2CallButton.Text = "All In";
             }
             else
             {
@@ -190,13 +238,23 @@ namespace StateApplication
         {
             Player3BetAmount.Show();
             Player3CallButton.Enabled = true;
-            Player3CheckButton.Enabled = true;
-            Player3FoldButton.Enabled = true;
-            Player3RaiseButton.Enabled = true;
-            if (String.IsNullOrEmpty(textBoxPot.Text))
+            if (game.getNumberPlayerTurns() > 1)
+            {
+                Player3CheckButton.Enabled = true;
+            }
+            if (game.callAmount > 0)
+            {
+                Player3FoldButton.Enabled = true;
+                Player3RaiseButton.Enabled = true;
+            }
+            if (String.IsNullOrEmpty(textBoxPot.Text) || game.callAmount == 0)
             {
                 Player3RaiseButton.Enabled = false;
                 Player3CallButton.Text = "Place Bet";
+            }
+            else if (game.getPlayer(3).getPlayerChips() <= game.callAmount)
+            {
+                Player3CallButton.Text = "All In";
             }
             else
             {
@@ -215,13 +273,23 @@ namespace StateApplication
         {
             Player4BetAmount.Show();
             Player4CallButton.Enabled = true;
-            Player4CheckButton.Enabled = true;
-            Player4FoldButton.Enabled = true;
-            Player4RaiseButton.Enabled = true;
-            if (String.IsNullOrEmpty(textBoxPot.Text))
+            if (game.getNumberPlayerTurns() > 1)
+            {
+                Player4CheckButton.Enabled = true;
+            }
+            if (game.callAmount > 0)
+            {
+                Player4FoldButton.Enabled = true;
+                Player4RaiseButton.Enabled = true;
+            }
+            if (String.IsNullOrEmpty(textBoxPot.Text) || game.callAmount == 0)
             {
                 Player4RaiseButton.Enabled = false;
                 Player4CallButton.Text = "Place Bet";
+            }
+            else if (game.getPlayer(4).getPlayerChips() <= game.callAmount)
+            {
+                Player4CallButton.Text = "All In";
             }
             else
             {
@@ -235,6 +303,14 @@ namespace StateApplication
             Player4CheckButton.Enabled = false;
             Player4FoldButton.Enabled = false;
             Player4RaiseButton.Enabled = false;
+        }
+        public void SetCall()
+        {
+            textboxCall.Text = game.callAmount.ToString();
+        }
+        public void SetPot()
+        {
+            textBoxPot.Text = game.pot.ToString();
         }
         public void addPlayer(string name, int chips)
         {
@@ -307,14 +383,14 @@ namespace StateApplication
                     Player3_Name.Text = game.getLoser().getPlayerName() + "Losing";
                     break;
                 case 4:
-                    Player4Name_Label.ForeColor = System.Drawing.Color.CadetBlue;
+                    Player4Name_Label.ForeColor = System.Drawing.Color.Red;
                     Player4Name_Label.Text = game.getLoser().getPlayerName() + "Losing";
                     break;
             }
 
             for (int i = 1;i < game.getNumberOfPlayers(); i++)
             {
-                if(i != game.getLoser().getPlayerNumber() || i != game.getWinner().getPlayerNumber())
+                if(i != game.getLoser().getPlayerNumber() && i != game.getWinner().getPlayerNumber())
                 {
                     switch (i)
                     {
@@ -363,89 +439,103 @@ namespace StateApplication
         private void Player2CallButton_Click(object sender, EventArgs e)
         {
             int bet = Convert.ToInt32(Player2BetAmount.Value);
-            if (game.callAmount == 0)
+           
+                if (game.callAmount == 0 && bet != 0)
+                {
+                    game.callAmount = bet;
+
+                }
+            if (game.callAmount != 0)
             {
-                game.callAmount = bet;
-                textboxCall.Text = bet.ToString();
-            }
-            if (game.callAmount > game.getPlayer(1).getPlayerChips())
-            {
-                game.pot += game.getPlayer(2).call(game.getPlayer(2).getPlayerChips());
-                game.getPlayer(2).allIn = game.pot;
-                game.getPlayer(2).InRound = false;
-                game.getPlayer(2).turn = 1;
-            }
-            else
-            {
-                game.pot += game.getPlayer(2).call(game.callAmount);
-                textBoxPot.Text = game.pot.ToString();
-                game.getPlayer(2).turn = 1;
-                game.setNextPlayer();
-               
-            }
-            UpdateChips();
+                if (game.callAmount > game.getPlayer(2).getPlayerChips())
+                {
+                    game.pot += game.getPlayer(2).call(game.getPlayer(2).getPlayerChips());
+                    game.getPlayer(2).allIn = game.pot;
+                    game.getPlayer(2).InRound = false;
+                    game.getPlayer(2).turn = 1;
+                    game.ContinueRound();
+                }
+                else
+                {
+                    game.pot += game.getPlayer(2).call(game.callAmount);
+                    game.getPlayer(2).turn = 1;
+                    game.ContinueRound();
+
+                }
+                UpdateChips();
+            }   
         }
 
         private void Player3CallButton_Click(object sender, EventArgs e)
         {
             int bet = Convert.ToInt32(Player3BetAmount.Value);
-            if (game.callAmount == 0)
+          
+
+
+                if (game.callAmount == 0 && bet != 0)
+                {
+                    game.callAmount = bet;
+
+                }
+            if (game.callAmount != 0)
             {
-                game.callAmount = bet;
-                textboxCall.Text = bet.ToString();
+                if (game.callAmount > game.getPlayer(3).getPlayerChips())
+                {
+                    game.pot += game.getPlayer(3).call(game.getPlayer(3).getPlayerChips());
+                    game.getPlayer(3).allIn = game.pot;
+                    game.getPlayer(3).InRound = false;
+                    game.getPlayer(3).turn = 1;
+                    game.ContinueRound();
+                }
+                else
+                {
+                    game.pot += game.getPlayer(3).call(game.callAmount);
+                    game.getPlayer(3).turn = 1;
+                    game.ContinueRound();
+
+                }
+                UpdateChips();
             }
-            if (game.callAmount > game.getPlayer(3).getPlayerChips())
-            {
-                game.pot += game.getPlayer(3).call(game.getPlayer(3).getPlayerChips());
-                game.getPlayer(3).allIn = game.pot;
-                game.getPlayer(3).InRound = false;
-                game.getPlayer(3).turn = 1;
-            }
-            else
-            {
-                game.pot += game.getPlayer(3).call(game.callAmount);
-                textBoxPot.Text = game.pot.ToString();
-                game.getPlayer(3).turn = 1;
-                game.setNextPlayer();
-                
-            }
-            UpdateChips();
         }
 
         private void Player4CallButton_Click(object sender, EventArgs e)
         {
             int bet = Convert.ToInt32(Player4BetAmount.Value);
-            if (game.callAmount == 0)
+           
+                if (game.callAmount == 0 && bet != 0)
+                {
+                    game.callAmount = bet;
+
+                }
+            if (game.callAmount != 0)
             {
-                game.callAmount = bet;
-                textboxCall.Text = bet.ToString();
+                if (game.callAmount > game.getPlayer(4).getPlayerChips())
+                {
+                    game.pot += game.getPlayer(4).call(game.getPlayer(4).getPlayerChips());
+                    game.getPlayer(4).allIn = game.pot;
+                    game.getPlayer(4).InRound = false;
+                    game.getPlayer(4).turn = 1;
+                    game.ContinueRound();
+                }
+                else
+                {
+                    game.pot += game.getPlayer(4).call(game.callAmount);
+                    game.getPlayer(4).turn = 1;
+                    game.ContinueRound();
+
+                }
+                UpdateChips();
             }
-            if (game.callAmount > game.getPlayer(4).getPlayerChips())
-            {
-                game.pot += game.getPlayer(4).call(game.getPlayer(4).getPlayerChips());
-                game.getPlayer(4).allIn = game.pot;
-                game.getPlayer(4).InRound = false;
-                game.getPlayer(4).turn = 1;
-            }
-            else
-            {
-                game.pot += game.getPlayer(4).call(game.callAmount);
-                textBoxPot.Text = game.pot.ToString();
-                game.getPlayer(4).turn = 1;
-                game.setNextPlayer();
-                
-            }
-            UpdateChips();
         }
 
         private void Player1FoldButton_Click(object sender, EventArgs e)
         {
             game.getPlayer(1).turn = 1;
-            game.playerOut(game.getPlayer(1));
             game.getPlayer(1).fold(game.getLoser());
+            game.playerOut(game.getPlayer(1));
             UpdateChips();
-            game.setNextPlayer();
-            
+            game.ContinueRound();
+
 
         }
         public void showCard(int Player,int CardToShow)
@@ -491,9 +581,9 @@ namespace StateApplication
                 Player1Pb1.Image = null;
                 Player1Pb2.Image = null;
                 Player2Pb1.Image = null;
+                Player2Pb2.Image = null;
                 Player3Pb2.Image = null;
                 Player3Pb1.Image = null;
-                Player4Pb2.Image = null;
                 Player4Pb1.Image = null;
                 Player4Pb2.Image = null;
             }
@@ -529,33 +619,33 @@ namespace StateApplication
 
             game.getPlayer(2).turn = 1;
             game.getPlayer(2).InRound = false;
-            game.playerOut(game.getPlayer(2));
             game.getPlayer(2).fold(game.getLoser());
+            game.playerOut(game.getPlayer(2));
             UpdateChips();
-            game.setNextPlayer();
-           
+            game.ContinueRound();
+
         }
 
         private void Player3FoldButton_Click(object sender, EventArgs e)
         {
             game.getPlayer(3).turn = 1;
             game.getPlayer(3).InRound = false;
-            game.playerOut(game.getPlayer(3));
             game.getPlayer(3).fold(game.getLoser());
+            game.playerOut(game.getPlayer(3));
             UpdateChips();
-            game.setNextPlayer();
-            
+            game.ContinueRound();
+
         }
 
         private void Player4FoldButton_Click(object sender, EventArgs e)
         {
             game.getPlayer(4).turn = 1;
             game.getPlayer(4).InRound = false;
-            game.playerOut(game.getPlayer(4));
             game.getPlayer(4).fold(game.getLoser());
+            game.playerOut(game.getPlayer(4));
             UpdateChips();
-            game.setNextPlayer();
-            
+            game.ContinueRound();
+
         }
 
         private void Player1RaiseButton_Click(object sender, EventArgs e)
@@ -564,12 +654,12 @@ namespace StateApplication
             {
                 int bet = Convert.ToInt32(Player1betAmount.Value);
                 game.callAmount = bet;
-                textboxCall.Text = bet.ToString();
                 game.pot += game.getPlayer(1).raise(bet, game.getLoser());
+                game.callRaised();
                 game.getPlayer(1).turn = 1;
                 UpdateChips();
-                game.setNextPlayer();
-                
+                game.ContinueRound();
+
             }
         }
 
@@ -579,12 +669,12 @@ namespace StateApplication
             {
                 int bet = Convert.ToInt32(Player2BetAmount.Value);
                 game.callAmount = bet;
-                textboxCall.Text = bet.ToString();
                 game.pot += game.getPlayer(2).raise(bet, game.getLoser());
+                game.callRaised();
                 game.getPlayer(2).turn = 1;
                 UpdateChips();
-                game.setNextPlayer();
-              
+                game.ContinueRound();
+
             }
         }
 
@@ -594,12 +684,12 @@ namespace StateApplication
             {
                 int bet = Convert.ToInt32(Player3BetAmount.Value);
                 game.callAmount = bet;
-                textboxCall.Text = bet.ToString();
                 game.pot += game.getPlayer(3).raise(bet, game.getLoser());
+                game.callRaised();
                 game.getPlayer(3).turn = 1;
                 UpdateChips();
-                game.setNextPlayer();
-                
+                game.ContinueRound();
+
             }
         }
 
@@ -609,41 +699,50 @@ namespace StateApplication
             {
                 int bet = Convert.ToInt32(Player4BetAmount.Value);
                 game.callAmount = bet;
-                textboxCall.Text = bet.ToString();
+               
                 game.pot += game.getPlayer(4).raise(bet, game.getLoser());
+                game.callRaised();
                 game.getPlayer(4).turn = 1;
                 UpdateChips();
-                game.setNextPlayer();
-               
+                game.ContinueRound();
+
             }
         }
 
         private void Player1CheckButton_Click(object sender, EventArgs e)
         {
             game.getPlayer(1).check(game.getLoser());
-            game.setNextPlayer();
-           
+            UpdateChips();
+            game.CurrentPlayersTurn++;
+            game.ContinueRound();
+
         }
 
         private void Player2CheckButton_Click(object sender, EventArgs e)
         {
             game.getPlayer(2).check(game.getLoser());
-            game.setNextPlayer();
-            
+            UpdateChips();
+            game.CurrentPlayersTurn++;
+            game.ContinueRound();
+
         }
 
         private void Player3CheckButton_Click(object sender, EventArgs e)
         {
             game.getPlayer(3).check(game.getLoser());
-            game.setNextPlayer();
-            
+            UpdateChips();
+            game.CurrentPlayersTurn++;
+            game.ContinueRound();
+
         }
 
         private void Player4CheckButton_Click(object sender, EventArgs e)
         {
             game.getPlayer(4).check(game.getLoser());
-            game.setNextPlayer();
-           
+            UpdateChips();
+            game.CurrentPlayersTurn++;
+            game.ContinueRound();
+
         }
     }
 }

@@ -142,10 +142,10 @@ namespace StateApplication
         }
         public Card pullCard()
         {
-            int i = random.Next(0, 53);
+            int i = random.Next(0, 52);
             while (alreadySelected(i))
             {
-                i = random.Next(0, 53);
+                i = random.Next(0, 52);
             }
             return cards[i];
         }

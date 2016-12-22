@@ -18,7 +18,7 @@ namespace StateApplication
         {
             InitializeComponent();
             numberOfPlayers = 2;
-
+            ChipstoWin = 1000;
         }
 
         private void label6_Click(object sender, EventArgs e)
@@ -48,12 +48,13 @@ namespace StateApplication
         private void StartGame()
         {
             GameBoard gameBoard = new GameBoard();
-            gameBoard.Parent = this;
-            gameBoard.numberOfPlayers = numberOfPlayers;
             gameBoard.ChipsToWin = ChipstoWin;
+            gameBoard.numberOfPlayers = numberOfPlayers;
+           
             for (int i = 0; i < numberOfPlayers; i++)
             {
                 AssignPlayer assignplayer = new AssignPlayer(gameBoard);
+                assignplayer.setNameMoney("Player" + (i + 1), ChipstoWin / numberOfPlayers);
                 assignplayer.Show();
             }
             this.Hide();
@@ -67,6 +68,11 @@ namespace StateApplication
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
             ChipstoWin = Convert.ToInt32(numericUpDown2.Value);
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

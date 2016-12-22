@@ -11,8 +11,15 @@ namespace StateApplication
     {
         int numberofplayers;
         int ChipsToWin;
-        public int pot;
-        public int callAmount;
+        private int Pot;
+        public int pot { get { return Pot; }
+            set { Pot = value; board.SetPot(); } }
+        private int callamount;
+        public int callAmount
+        {
+            get { return callamount; }
+            set { callamount = value; board.SetCall(); }
+        }
         List<Player> players;
         List<Player> playersInGame;
         Player WinningPlayer;
@@ -20,7 +27,6 @@ namespace StateApplication
         Deck deck;
         private int playersTurn;
         private int round;
-        private bool aRoundWinner;
         GameBoard board;
         public int Round { get { return round; }
                            set {
@@ -44,10 +50,15 @@ namespace StateApplication
             }
         }
         public int CurrentPlayersTurn { get { return playersTurn; }
-            set { if(value < 1 || value > numberofplayers)
+            set { if(value > players.Count)
                 {
                     playersTurn = 1;
                 }
+            else if(value < 1)
+                {
+                    playersTurn = playersInGame.Count;
+                }
+           
                 else
                 {
                     playersTurn = value;
@@ -62,9 +73,10 @@ namespace StateApplication
             this.numberofplayers = NumberOfPlayers;
             this.deck = new Deck();
             this.ChipsToWin = ChipsNeededToWin;
-            playersTurn = 1;
             players = new List<Player>();
+            playersInGame = new List<Player>(players);
             this.board = gameboard;
+            CurrentPlayersTurn = 1;
         }
         public void addPlayer(Player player)
         {
@@ -96,7 +108,25 @@ namespace StateApplication
         }
         public Player getCurrentPlayer()
         {
-           return players[CurrentPlayersTurn];
+            bool currentPlayerOK = false;
+            if(getNumberPlayerTurns() != 0)
+            {
+                while (!currentPlayerOK)
+                {
+                    if (players[CurrentPlayersTurn - 1].allIn == 0 && players[CurrentPlayersTurn - 1].InRound == true && players[CurrentPlayersTurn - 1].turn == 0)
+                    {
+                        currentPlayerOK = true;
+                        return players[CurrentPlayersTurn - 1];
+                    }
+                    CurrentPlayersTurn++;
+                }
+                return null;
+            }
+            else
+            {
+                return null;
+            }
+
         }
         public Player getPlayer(int PlayerNumber)
         {
@@ -109,118 +139,106 @@ namespace StateApplication
             }
             return null;
         }
-        public void RunGame()
-        {
-            foreach(Player p in players)
-            {
-                p.turn = 0;
-                p.InRound = true;
-                p.allIn = 0;
-            }
-            while (!checkIfPlayerWon())
-            {
-                RoundOne();
-                if (!aRoundWinner)
-                {
-                    RoundTwo();
-                }
-                
-            }
-        }
+        
         public void RoundStart()
         {
-            aRoundWinner = false;
-            playersInGame = players;
+            SetWinnerLoser();
+            CurrentPlayersTurn = 1;
+            board.ShowWinnerLoser();
+            playersInGame.Clear();
+            playersInGame = players.ToList();
             Round = 1;
+            if (WinningPlayer != null)
+            {
+                int bonus = (WinningPlayer.getPlayerChips() * 1) / 100;
+                WinningPlayer.chips += bonus;
+            }
+            
         }
         public void RoundOne()
         {
-            if (!aRoundWinner)
-            {
-                if (!everyoneTurnComplete())
+                if (getCurrentPlayer() != null)
+                {
+                    board.PlayerTurn(getCurrentPlayer().getPlayerNumber());
+                }
+                else
+                {   //Everyone else folded
+                    if (playersInGame.Count == 1)
+                    {
+                        PlayerWonPot(playersInGame[0]);
+                    }
+                    else
+                    { 
+                    foreach (Player p in playersInGame)
+                    {   //Prepare Players for next round
+                        drawCard(p.getPlayerNumber(), 1);
+                        board.showCard(p.getPlayerNumber(), 1);
+                        p.turn = 0;
+                        p.amountCalled = 0;
+                    }
+                    //Preparegame for next round
+                    CurrentPlayersTurn = 1;
+                    callAmount = 0;
+                    Round = 2;
+
+                }
+            }
+        }
+        public void RoundTwo()
+        {
+                if (getCurrentPlayer() != null)
                 {
                     board.PlayerTurn(getCurrentPlayer().getPlayerNumber());
                 }
                 else
                 {
-                    foreach (Player p in playersInGame)
-                    {
-                        drawCard(p.getPlayerNumber(), 1);
-                        board.showCard(p.getPlayerNumber(), 1);
-                        p.turn = 0;
-                    }
-                    Round = 2;
-
-                }
-            }
-            else
-            {
-                Round = 3;
-            }
-
-        }
-        public void RoundTwo()
-        {
-            if (!aRoundWinner)
-            {
-                if (!everyoneTurnComplete())
+                if(playersInGame.Count == 1)
                 {
-                    board.PlayerTurn(getCurrentPlayer().getPlayerNumber());
+                    PlayerWonPot(playersInGame[0]);
                 }
-                else {
+                else
+                { 
                     foreach (Player p in playersInGame)
                     {
-                        drawCard(p.getPlayerNumber(), 1);
-                        board.showCard(p.getPlayerNumber(), 1);
+                        drawCard(p.getPlayerNumber(), 2);
+                        board.showCard(p.getPlayerNumber(), 2);
                     }
-                    Player winner = playersInGame[0];
-                    foreach (Player p in playersInGame)
+                    Player winner = findWinner();
+                    if (checkForTies(winner))
                     {
-                        int value1 = p.card1.getValue() + p.card2.getValue();
-                        if (value1 > (winner.card1.getValue() + winner.card2.getValue()))
-                        {
-                            winner = p;
-                        }
-                        else if (value1 == (winner.card1.getValue() + winner.card2.getValue()))
-                        {
-                            if (p.getState() == State.Winner && p != winner)
-                            {
-                                winner = p;
-                            }
-                            else if (p.getState() == State.Loser && winner.getState() == State.Neutral)
-                            {
-                                winner = p;
-                            }
-                            else
-                            {
-                                PlayerWonPot(winner, p);
-                                break;
-                            }
-
-                        }
+                        Player tiedPlayer = getTiedPlayer(winner);
+                        PlayerWonPot(winner, tiedPlayer);
                     }
+                    else
+                    {    
                     PlayerWonPot(winner);
+                    }
+
                 }
-            }
-            else
-            {
-                Round = 3;
             }
         }
         public void restartRound()
         {
             checkIfPlayerWon();
-            SetWinnerLoser();
-            board.ShowWinnerLoser();
-            foreach(Player p in players)
+            resetPlayers();
+            nextPlayerOrder();
+            pot = 0;
+            callAmount = 0;
+            deck.shuffle();
+            Round = 0;
+        }
+        private void resetPlayers()
+        {
+            foreach (Player p in players)
             {
                 p.allIn = 0;
                 p.turn = 0;
                 p.InRound = true;
+                p.amountCalled = 0;
+                p.card1 = null;
+                p.card2 = null;
+                board.showCard(p.getPlayerNumber(), 0);
             }
-            pot = 0;
-            callAmount = 0;
-            //need to set no call amount in board
         }
         private void SetWinnerLoser()
         {
@@ -266,7 +284,7 @@ namespace StateApplication
             }
             foreach(Player p in players)
             {
-                if(p != WinningPlayer || p != LosingPlayer)
+                if(p.getPlayerName() != WinningPlayer.getPlayerName() && p.getPlayerName() != LosingPlayer.getPlayerName())
                 {
                     p.setPlayerState(State.Neutral);
                 }
@@ -283,7 +301,7 @@ namespace StateApplication
             }
             return true;
         }
-        public void setNextPlayer()
+        public void ContinueRound()
         {
             if(playersInGame.Count == 1)
             {
@@ -291,41 +309,33 @@ namespace StateApplication
             }
             else if(Round == 1)
             {
-                next();
-                RoundOne();
+                RoundOne();    
             }
             else if(Round == 2)
             {
-                next();
-                RoundTwo();
+                 RoundTwo();  
             }
             else if(Round == 3)
             {
                 restartRound();
             }
-            
-        
         }
-        private void next()
+        
+       
+        private int numberPlayersInRound()
         {
-
-            CurrentPlayersTurn++;
-            bool inGame = false;
-            while (!inGame)
+            int number = 0;
+            foreach(Player p in playersInGame)
             {
-                foreach (Player p in playersInGame)
+                if(p.allIn == 0 && p.turn == 0 && p.InRound)
                 {
-                    if (p.getPlayerNumber() == CurrentPlayersTurn && p.InRound)
-                    {
-                        inGame = true;
-                    }
+                    number++;
                 }
-                CurrentPlayersTurn++;
             }
+            return number;
         }
         public void PlayerWonPot(Player player)
         {
-            aRoundWinner = true;
             if(player.allIn == 0)
             {
                 player.chips += pot;
@@ -345,7 +355,7 @@ namespace StateApplication
                 }
                 foreach (Player p in playersInGame)
                 {
-                    if(p != player)
+                    if(p != player && p != winner)
                     {
                         int value1 = p.card1.getValue() + p.card2.getValue();
                         if (value1 > (winner.card1.getValue() + winner.card2.getValue()))
@@ -372,7 +382,7 @@ namespace StateApplication
         }
         public void PlayerWonPot(Player player1, Player player2)
         {
-            aRoundWinner = true;
+            
                 player1.chips += pot / 2;
                 player2.chips += pot / 2;
             DialogResult result = MessageBox.Show("Players: " + player1.getPlayerName() + "   " + player2.getPlayerName() + "Won :" + pot / 2);
@@ -397,6 +407,7 @@ namespace StateApplication
         public void playerOut(Player player)
         {
             playersInGame.Remove(player);
+          
         }
         public Player getLoser()
         {
@@ -404,6 +415,22 @@ namespace StateApplication
         }
         private bool checkIfPlayerWon()
         {
+           if(players.Count == 1)
+            {
+                DialogResult result = MessageBox.Show("Player:" + players[0] + "has won the game with " + players[0].getPlayerChips() + "chips");
+                if (result == DialogResult.OK)
+                {
+                    Form1 form1 = new Form1();
+                    form1.Show();
+                    board.Close();
+                    return true;
+                }
+            
+                else
+                {
+                    board.Close();
+                }
+            }
             foreach(Player p in players)
             {
                 if(p.getPlayerChips() >= ChipsToWin)
@@ -411,7 +438,8 @@ namespace StateApplication
                   DialogResult result =  MessageBox.Show("Player:" + p.getPlayerName() + "has won the game with " + p.getPlayerChips() + "chips" + "Press ok to play again");
                     if(result == DialogResult.OK)
                     {
-                        board.Parent.Show();
+                        Form1 form1 = new Form1();
+                        form1.Show();
                         board.Close();
                         return true;
                     }
@@ -422,7 +450,10 @@ namespace StateApplication
                 }
                 if(p.getPlayerChips() <= 0)
                 {
+                    DialogResult result = MessageBox.Show("Player: " + p.getPlayerName() + "Lost");
+                    board.playerOut(p.getPlayerNumber());
                     players.Remove(p);
+                    SetWinnerLoser();
                 }
             }
             return false;
@@ -430,6 +461,94 @@ namespace StateApplication
         public Player getWinner()
         {
             return WinningPlayer;
+        }
+        public int getNumberPlayerTurns()
+        {
+            int number = 0;
+            foreach(Player p in playersInGame)
+            {
+                if(p.turn == 0)
+                {
+                    number++;
+                }
+            }
+            return number;
+        }
+        public void callRaised()
+        {
+            foreach(Player p in playersInGame)
+            {
+                if (p.InRound && p.allIn == 0)
+                {
+                    p.turn = 0;
+                }
+            }
+        }
+        
+        private Player findWinner()
+        {
+            Player winner = playersInGame[0];
+            foreach (Player p in playersInGame)
+            {
+                int value1 = p.card1.getValue() + p.card2.getValue();
+                if (value1 > (winner.card1.getValue() + winner.card2.getValue()))
+                {
+                    winner = p;
+                }
+                else if (value1 == (winner.card1.getValue() + winner.card2.getValue()))
+                {
+                    if (p.getState() == State.Winner && p != winner)
+                    {
+                        winner = p;
+                    }
+                    else if (p.getState() == State.Loser && winner.getState() == State.Neutral)
+                    {
+                        winner = p;
+                    }
+                }
+                
+            }
+            return winner;
+        }
+        private bool checkForTies(Player winner)
+        {
+            int WinningValue = winner.card1.getValue() + winner.card2.getValue();
+            foreach (Player p in playersInGame)
+            {
+                int Othervalue = p.card1.getValue() + p.card2.getValue();
+                if(Othervalue == WinningValue && winner.getState() != State.Winner && (p.getState() != State.Neutral && winner.getState() != State.Loser ))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        private Player getTiedPlayer(Player winner)
+        {
+            int WinningValue = winner.card1.getValue() + winner.card2.getValue();
+            foreach (Player p in playersInGame)
+            {
+                int Othervalue = p.card1.getValue() + p.card2.getValue();
+                if (Othervalue == WinningValue && winner.getState() != State.Winner && (p.getState() != State.Neutral && winner.getState() != State.Loser))
+                {
+                    return p;
+                }
+            }
+            return null;
+        }
+        private void previous()
+        {
+            if (playersInGame.Count != 0)
+            {
+                for (int i = 1; i < playersInGame.Count; i++)
+                {
+                    CurrentPlayersTurn--;
+                    if (getCurrentPlayer().turn == 0 && getCurrentPlayer().allIn == 0 && getCurrentPlayer().InRound)
+                    {
+                        break;
+                    }
+                }
+            }
         }
     }
 }

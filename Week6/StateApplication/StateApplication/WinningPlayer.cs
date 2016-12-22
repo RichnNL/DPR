@@ -16,24 +16,37 @@ namespace StateApplication
         }
         public void Check(Player loser)
         {
-            int tax = (player.chips * 5) / 100;
-            player.chips -= tax;
-            loser.chips = +tax;
+            if (loser != null)
+            {
+                int tax = (player.chips * 5) / 100;
+                player.chips -= tax;
+                loser.chips += tax;
+            }
         }
 
         public void Fold(Player loser)
-        {
-            int tax = (player.chips * 5) / 100;
-            player.chips -= tax;
-            loser.chips = +tax;
+        {   if (loser != null)
+            {
+                int tax = (player.chips * 5) / 100;
+                player.chips -= tax;
+                loser.chips += tax;
+            }
         }
 
         public int Raise(int amount, Player loser)
         {
-            int tax = (player.chips * 5) / 100;
-            player.chips -= amount + tax;
-            loser.chips += tax;
-            return amount;
+            if (loser != null)
+            {
+                int tax = (player.chips * 5) / 100;
+                player.chips -= amount + tax;
+                loser.chips += tax;
+                return amount;
+            }
+            else
+            {
+                player.chips -= amount;
+                return amount;
+            }
         }
     }
 }
