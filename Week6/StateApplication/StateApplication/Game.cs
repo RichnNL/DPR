@@ -167,6 +167,17 @@ namespace StateApplication
                     {
                         PlayerWonPot(playersInGame[0]);
                     }
+                    else if(!enoughPlayersForNextRound())
+                     {
+                        //everyone is all in or folded
+                        foreach (Player p in playersInGame)
+                        {        //Prepare Players for next round
+                            drawCard(p.getPlayerNumber(), 1);
+                            board.showCard(p.getPlayerNumber(), 1);
+                            p.turn = 1;
+                        }
+                        Round = 2;
+                }
                     else
                     { 
                     foreach (Player p in playersInGame)
@@ -186,7 +197,7 @@ namespace StateApplication
         }
         public void RoundTwo()
         {
-                if (getCurrentPlayer() != null)
+                if (getCurrentPlayer() != null )
                 {
                     board.PlayerTurn(getCurrentPlayer().getPlayerNumber());
                 }
@@ -221,6 +232,7 @@ namespace StateApplication
         {
             checkIfPlayerWon();
             resetPlayers();
+            SetWinnerLoser();
             nextPlayerOrder();
             pot = 0;
             callAmount = 0;
@@ -277,7 +289,7 @@ namespace StateApplication
                 LosingPlayer = TempLosing;
                 LosingPlayer.setPlayerState(State.Loser);
             }
-            else if(LosingPlayer.getPlayerChips() < TempLosing.getPlayerChips())
+            else if(LosingPlayer.getPlayerChips() > TempLosing.getPlayerChips())
             {
                 LosingPlayer = TempLosing;
                 LosingPlayer.setPlayerState(State.Loser);
@@ -550,5 +562,26 @@ namespace StateApplication
                 }
             }
         }
+        private bool enoughPlayersForNextRound()
+        {
+            int number = 0;
+            foreach (Player p in playersInGame)
+            {
+                if (p.allIn == 0 && p.InRound)
+                {
+                    number++;
+                }
+            }
+            if(number > 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+      
+       
     }
 }

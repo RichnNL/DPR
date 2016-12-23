@@ -16,6 +16,7 @@ namespace StateApplication
         public int ChipsToWin;
         private bool gameStart;
         public Game game;
+        private bool selfAllin;
         public int numberOfPlayers
         {
             get { return numberofplayers; }
@@ -53,7 +54,7 @@ namespace StateApplication
                 }
             if (game.callAmount != 0)
             {
-                if (game.callAmount > game.getPlayer(1).getPlayerChips())
+                if (game.callAmount >= game.getPlayer(1).getPlayerChips())
                 {
                     game.pot += game.getPlayer(1).call(game.getPlayer(1).getPlayerChips());
                     game.getPlayer(1).allIn = game.pot;
@@ -388,7 +389,7 @@ namespace StateApplication
                     break;
             }
 
-            for (int i = 1;i < game.getNumberOfPlayers(); i++)
+            for (int i = 0;i < game.getNumberOfPlayers(); i++)
             {
                 if(i != game.getLoser().getPlayerNumber() && i != game.getWinner().getPlayerNumber())
                 {
@@ -419,6 +420,7 @@ namespace StateApplication
         private void Player1betAmount_ValueChanged(object sender, EventArgs e)
         {
             Player1betAmount.Maximum = game.getPlayer(1).getPlayerChips();
+           
         }
 
         private void Player2BetAmount_ValueChanged(object sender, EventArgs e)
@@ -447,7 +449,7 @@ namespace StateApplication
                 }
             if (game.callAmount != 0)
             {
-                if (game.callAmount > game.getPlayer(2).getPlayerChips())
+                if (game.callAmount >= game.getPlayer(2).getPlayerChips())
                 {
                     game.pot += game.getPlayer(2).call(game.getPlayer(2).getPlayerChips());
                     game.getPlayer(2).allIn = game.pot;
@@ -479,7 +481,7 @@ namespace StateApplication
                 }
             if (game.callAmount != 0)
             {
-                if (game.callAmount > game.getPlayer(3).getPlayerChips())
+                if (game.callAmount >= game.getPlayer(3).getPlayerChips())
                 {
                     game.pot += game.getPlayer(3).call(game.getPlayer(3).getPlayerChips());
                     game.getPlayer(3).allIn = game.pot;
@@ -509,7 +511,7 @@ namespace StateApplication
                 }
             if (game.callAmount != 0)
             {
-                if (game.callAmount > game.getPlayer(4).getPlayerChips())
+                if (game.callAmount >= game.getPlayer(4).getPlayerChips())
                 {
                     game.pot += game.getPlayer(4).call(game.getPlayer(4).getPlayerChips());
                     game.getPlayer(4).allIn = game.pot;
