@@ -443,6 +443,7 @@ namespace StateApplication
                     board.Close();
                 }
             }
+            List<int> PlayersLost = new List<int>();
             foreach(Player p in players)
             {
                 if(p.getPlayerChips() >= ChipsToWin)
@@ -464,7 +465,17 @@ namespace StateApplication
                 {
                     DialogResult result = MessageBox.Show("Player: " + p.getPlayerName() + "Lost");
                     board.playerOut(p.getPlayerNumber());
-                    players.Remove(p);
+                    PlayersLost.Add(p.getPlayerNumber());
+                    
+                    
+                }
+            }
+            if(PlayersLost.Count != 0)
+            {
+                foreach(int i in PlayersLost)
+                {
+                    numberofplayers--;
+                    players.Remove(getPlayer(i));
                     SetWinnerLoser();
                 }
             }
